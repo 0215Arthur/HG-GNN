@@ -1,0 +1,7 @@
+absl-py==0.13.0
+Cython==0.29.23
+dgl-cu101==0.6.0
+numpy==1.21.4
+pandas==1.2.1
+tqdm==4.56.0
+torch==1.7.1
