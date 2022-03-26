@@ -1,4 +1,4 @@
-# HG-PGNN
+# HG-GNN
 ## Usage
 
 ### Data Processing
