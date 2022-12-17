@@ -7,6 +7,7 @@
 ### Training & Testing
 - Run `python main.py`
 - You can modify the `basic.ini` configuration file to set the dataset details and modify the `config/model.ini` file to set the hyper-parameters of target model.
+- update: *You can get train_seq.pkl using the data_processor code: `data_helper.py`*
 
 ### Requirement
 - `pip isntall -r requirements.txt `
