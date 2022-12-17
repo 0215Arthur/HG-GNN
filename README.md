@@ -3,7 +3,6 @@
 
 ### Data Processing
 - The data preprocessing code is following: `https://github.com/twchen/lessr/blob/master/utils/data/preprocess.py` and `https://github.com/CRIPAC-DIG/SR-GNN/blob/master/datasets/preprocess.py`
-- `data_processor/data_loader.py` is used for generating training/val/test data.
 
 ### Training & Testing
 - Run `python main.py`
