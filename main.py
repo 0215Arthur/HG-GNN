@@ -17,6 +17,7 @@ from utils.config import Configurator
 from utils.tools import get_time_dif, Logger
 from data_processor.data_loader import load_data, SessionDataset
 from build_graph import uui_graph, sample_relations
+from data_processor.date_helper import LastFM_Process
 
 import torch.nn.functional as F
 from models import HG_GNN
@@ -41,6 +42,11 @@ console.setLevel(logging.INFO)
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.addHandler(console)
+
+# pre-process dataset
+lp=LastFM_Process(conf)
+lp._read_raw_data()
+lp._split_data()
 
 
 train_data, test_data, max_vid, max_uid = load_data(conf['dataset.name'], conf['dataset.path'])

@@ -159,6 +159,9 @@ def uui_graph(dataset_name, sample_size, topK, add_u = True, add_v = True):
     nxt = []
     src_v = []
     dst_u = []
+    # build i2i / u2u relations
+    itemCF(dataset_name)
+    userCF(dataset_name)    
 
     with open(f'./dataset/{dataset_name}/train.pkl', 'rb') as f:
         graph = pickle.load(f)

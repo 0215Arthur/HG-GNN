@@ -1,4 +1,5 @@
 # HG-GNN
+The implementation of Heterogeneous global graph neural networks for personalized session-based recommendation.
 ## Usage
 
 ### Data Processing

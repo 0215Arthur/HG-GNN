@@ -528,8 +528,8 @@ class LastFM_Process(Data_Process):
         user_df[user_df['#id'].isin(uids)].to_csv(saved_path+'/lastfm/user_profile.csv',index=False)
         print('save to user_profile.csv')
         
-if __name__=='__main__':
-    conf={}
-    lp=LastFM_Process(conf)
-    lp._read_raw_data()
-    lp._split_data()
+# if __name__=='__main__':
+#     conf={}
+#     lp=LastFM_Process(conf)
+#     lp._read_raw_data()
+#     lp._split_data()
