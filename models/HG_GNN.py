@@ -114,14 +114,14 @@ class HG_GNN(nn.Module):
         note_embeds:
         mask: 
         """
-        mask = mask.float().unsqueeze(-1)
-        hs = user_vec.unsqueeze(-2).repeat(1, mask.shape[1], 1)
-        nh = torch.matmul(note_embeds, self.w_3)
+        mask = mask.float().unsqueeze(-1)           #[Bs, L, 1]
+        hs = user_vec.repeat(1, mask.shape[1], 1)   #[Bs, L, em_size]
+        nh = torch.matmul(note_embeds, self.w_3)    #[Bs, L, em_size]
         nh = torch.tanh(nh)
         nh = torch.sigmoid(self.glu3(nh) + self.glu4(hs))
         beta = torch.matmul(nh, self.w_4)
         beta = beta * mask
-        select = torch.sum(beta * note_embeds, 1)
+        select = torch.sum(beta * note_embeds, 1)  #[Bs, em_size]
 
         return select
 
@@ -193,19 +193,19 @@ class HG_GNN(nn.Module):
         # c_t = torch.cat([c_local, c_global], 1)
         # gru_ht = self.gru_transform(c_t)
 
-        seq_embeds = user_embeds
+        seq_embeds = user_embeds.squeeze(1)  # [bs, em_size]
 
-        sess_vec, avg_sess = self.compute_hidden_vector(node_embeds, mask, pos_idx)
+        sess_vec, avg_sess = self.compute_hidden_vector(node_embeds, mask, pos_idx)  # [bs, em_size]
 
-        sess_user = self.sess_user_vector(user_embeds, node_embeds, mask)
+        sess_user = self.sess_user_vector(user_embeds, node_embeds, mask)  # [bs, em_size]
 
-        alpha = self.sigmoid_concat(torch.cat([sess_vec, sess_user], 1))
+        alpha = self.sigmoid_concat(torch.cat([sess_vec, sess_user], 1))  #[bs, 1]
 
-        seq_embeds +=  (alpha * sess_vec + (1 - alpha) * sess_user)
+        seq_embeds +=  (alpha * sess_vec + (1 - alpha) * sess_user)  
  
         item_embs = self.v2e.weight[1:]  
 
-        scores = torch.matmul(seq_embeds, item_embs.permute(1, 0))
+        scores = torch.matmul(seq_embeds, item_embs.permute(1, 0))      #[bs, item_num]
 
         return scores
 
