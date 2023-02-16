@@ -201,7 +201,7 @@ class HG_GNN(nn.Module):
 
         alpha = self.sigmoid_concat(torch.cat([sess_vec, sess_user], 1))  #[bs, 1]
 
-        seq_embeds +=  (alpha * sess_vec + (1 - alpha) * sess_user)  
+        seq_embeds = seq_embeds + (alpha * sess_vec + (1 - alpha) * sess_user)  
  
         item_embs = self.v2e.weight[1:]  
 

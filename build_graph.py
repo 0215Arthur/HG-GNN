@@ -105,7 +105,7 @@ def userCF(dataset):
     # print(user_sim_matrix)
     for user in user_sim_matrix:
         user_topK[user] = sorted(user_sim_matrix[user].items(), key=itemgetter(1), reverse=True)[0:100]
-    with open(f'../dataset/{dataset}/u2u_sim.pkl', 'wb') as f:
+    with open(f'./dataset/{dataset}/u2u_sim.pkl', 'wb') as f:
         pickle.dump(user_topK, f)
 
 
@@ -143,7 +143,7 @@ def itemCF(dataset):
     # print(user_sim_matrix)
     for item in item_sim_matrix:
         item_topK[item] = sorted(item_sim_matrix[item].items(), key=itemgetter(1), reverse=True)[0:200]
-    with open(f'../dataset/{dataset}/i2i_sim.pkl', 'wb') as f:
+    with open(f'./dataset/{dataset}/i2i_sim.pkl', 'wb') as f:
         pickle.dump(item_topK, f)
 
 
